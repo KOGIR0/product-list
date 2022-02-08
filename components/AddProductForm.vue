@@ -7,7 +7,7 @@
     <label>Ссылка на изображение товара<span class="required">&#42;</span></label>
     <input v-model="imgSrc" type="text" placeholder="Введите ссылку" required>
     <label>Цена товара<span class="required">&#42;</span></label>
-    <input v-model="price" type="number" min="0" required placeholder="Введите цену">
+    <input pattern="[0-9 ]+" :value="formatedPrice" required placeholder="Введите цену" @input="handleInputPrice($event)">
     <input type="submit" value="Добавить товар" :disabled="submitIsDisabled" :style="{background: submitColor}">
   </form>
 </template>
@@ -20,7 +20,8 @@ export default {
       name: '',
       description: '',
       imgSrc: '',
-      price: 0
+      price: 0,
+      formatedPrice: ''
     }
   },
   computed: {
@@ -35,6 +36,17 @@ export default {
         return 'green'
       }
       return ''
+    }
+  },
+  methods: {
+    handleInputPrice (e) {
+      this.price = Number(String(e.target.value).replace(/\s+/g, ''))
+
+      if (Number.isNaN(this.price)) {
+        this.formatedPrice = e.target.value
+      } else {
+        this.formatedPrice = Number(this.price).toLocaleString()
+      }
     }
   }
 }
