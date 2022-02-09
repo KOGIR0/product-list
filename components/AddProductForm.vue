@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit="submit">
     <label>Наименование товара<span class="required">&#42;</span></label>
     <input v-model="name" type="text" placeholder="Введите наименование товара" required>
     <label>Описание товара</label>
@@ -7,7 +7,7 @@
     <label>Ссылка на изображение товара<span class="required">&#42;</span></label>
     <input v-model="imgSrc" type="text" placeholder="Введите ссылку" required>
     <label>Цена товара<span class="required">&#42;</span></label>
-    <input pattern="[0-9 ]+" :value="formatedPrice" required placeholder="Введите цену" @input="handleInputPrice($event)">
+    <input :value="formatedPrice" required placeholder="Введите цену" @input="handleInputPrice($event)">
     <input type="submit" value="Добавить товар" :disabled="submitIsDisabled" :style="{background: submitColor}">
   </form>
 </template>
@@ -15,6 +15,7 @@
 <script>
 export default {
   name: 'AddProductForm',
+  props: ['onSubmit'],
   data () {
     return {
       name: '',
@@ -39,6 +40,23 @@ export default {
     }
   },
   methods: {
+    submit (e) {
+      e.preventDefault()
+
+      const product = {
+        name: this.name,
+        description: this.description,
+        imgSrc: this.imgSrc,
+        price: this.price
+      }
+
+      this.name = ''
+      this.description = ''
+      this.imgSrc = ''
+      this.price = ''
+
+      this.onSubmit(product)
+    },
     handleInputPrice (e) {
       this.price = Number(String(e.target.value).replace(/\s+/g, ''))
 

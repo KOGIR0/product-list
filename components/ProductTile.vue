@@ -24,19 +24,23 @@ export default {
   props: {
     imageSrc: {
       default: '/product.png',
-      type: String
+      type: String,
+      required: true
     },
     name: {
       default: 'Product',
-      type: String
+      type: String,
+      required: true
     },
     description: {
-      default: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-      type: String
+      default: '',
+      type: String,
+      required: true
     },
     price: {
       default: '100 руб',
-      type: String
+      type: String,
+      required: true
     }
   }
 }
@@ -49,6 +53,9 @@ img {
 
 #product-info {
   padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 #name {
@@ -68,6 +75,8 @@ img {
   line-height: 20px;
   margin-top: 16px;
 
+  flex-grow: 1;
+
   color: #3F3F3F;
 }
 
@@ -75,7 +84,8 @@ img {
   background: #FFFEFB;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 #price {

@@ -5,7 +5,9 @@
     </div>
     <div class="row">
       <div id="add-product-form">
-        <AddProductForm />
+        <AddProductForm
+          :on-submit="addProduct"
+        />
       </div>
       <div class="row products-list">
         <ProductTile
@@ -13,6 +15,7 @@
           :key="index"
           :name="product.name"
           :price="product.price"
+          :description="product.description"
           class="product"
         />
       </div>
@@ -29,27 +32,32 @@ export default {
         {
           name: 'Product',
           price: '10000',
-          imgSrc: ''
+          imgSrc: '',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: ''
+          imgSrc: '',
+          description: 'Довольно-таки интересное описание товара в несколько строк'
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: ''
+          imgSrc: '',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: ''
+          imgSrc: '',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: ''
+          imgSrc: '',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
         }
       ]
     }
