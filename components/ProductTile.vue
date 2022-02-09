@@ -1,18 +1,18 @@
 <template>
   <div id="product">
-    <div id="delete-btn">
+    <div id="delete-btn" @click="(e) => deleteProduct(product)">
       <img src="/delete.svg">
     </div>
-    <img :src="imageSrc">
+    <img :src="product.imgSrc">
     <div id="product-info">
       <div id="name">
-        {{ name }}
+        {{ product.name }}
       </div>
       <div id="description">
-        {{ description }}
+        {{ product.description }}
       </div>
       <div id="price">
-        {{ Number(price).toLocaleString() + " руб" }}
+        {{ Number(product.price).toLocaleString() + " руб" }}
       </div>
     </div>
   </div>
@@ -22,25 +22,13 @@
 export default {
   name: 'ProductTile',
   props: {
-    imageSrc: {
-      default: '/product.png',
-      type: String,
-      required: true
+    product: {
+      required: true,
+      type: Object
     },
-    name: {
-      default: 'Product',
-      type: String,
-      required: true
-    },
-    description: {
-      default: '',
-      type: String,
-      required: true
-    },
-    price: {
-      default: '100 руб',
-      type: String,
-      required: true
+    deleteProduct: {
+      defalut: () => {},
+      type: Function
     }
   }
 }
@@ -84,6 +72,7 @@ img {
   background: #FFFEFB;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
+  position: relative;
   display: flex;
   flex-direction: column;
 }

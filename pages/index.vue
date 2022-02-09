@@ -13,9 +13,8 @@
         <ProductTile
           v-for="(product,index) in products"
           :key="index"
-          :name="product.name"
-          :price="product.price"
-          :description="product.description"
+          :product="product"
+          :delete-product="deleteProduct"
           class="product"
         />
       </div>
@@ -24,6 +23,8 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
+
 export default {
   name: 'IndexPage',
   data () {
@@ -32,39 +33,49 @@ export default {
         {
           name: 'Product',
           price: '10000',
-          imgSrc: '',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
+          imgSrc: '/product.png',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+          id: uuidv4()
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: '',
-          description: 'Довольно-таки интересное описание товара в несколько строк'
+          imgSrc: '/product.png',
+          description: 'Довольно-таки интересное описание товара в несколько строк',
+          id: uuidv4()
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: '',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
+          imgSrc: 'product.png',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+          id: uuidv4()
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: '',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
+          imgSrc: 'product.png',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+          id: uuidv4()
         },
         {
           name: 'Product',
           price: '10000',
-          imgSrc: '',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк'
+          imgSrc: 'product.png',
+          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+          id: uuidv4()
         }
       ]
     }
   },
   methods: {
     addProduct (product) {
+      product.id = uuidv4()
       this.products.push(product)
+    },
+    deleteProduct (product) {
+      console.log(product)
+      this.products = this.products.filter(p => p.id !== product.id)
     }
   }
 }
