@@ -12,7 +12,7 @@
         {{ description }}
       </div>
       <div id="price">
-        {{ price }}
+        {{ Number(price).toLocaleString() + " руб" }}
       </div>
     </div>
   </div>

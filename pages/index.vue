@@ -8,17 +8,13 @@
         <AddProductForm />
       </div>
       <div class="row products-list">
-        <div
-          v-for="index in 10"
+        <ProductTile
+          v-for="(product,index) in products"
           :key="index"
+          :name="product.name"
+          :price="product.price"
           class="product"
-        >
-          <ProductTile
-            name="Product"
-            price="35"
-            style="{width: 30%}"
-          />
-        </div>
+        />
       </div>
     </div>
   </div>
@@ -26,12 +22,47 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  data () {
+    return {
+      products: [
+        {
+          name: 'Product',
+          price: '10000',
+          imgSrc: ''
+        },
+        {
+          name: 'Product',
+          price: '10000',
+          imgSrc: ''
+        },
+        {
+          name: 'Product',
+          price: '10000',
+          imgSrc: ''
+        },
+        {
+          name: 'Product',
+          price: '10000',
+          imgSrc: ''
+        },
+        {
+          name: 'Product',
+          price: '10000',
+          imgSrc: ''
+        }
+      ]
+    }
+  },
+  methods: {
+    addProduct (product) {
+      this.products.push(product)
+    }
+  }
 }
 </script>
 
 <style>
-
 #add-product-form {
   width: 30%;
   margin: 8px;
@@ -63,5 +94,9 @@ html {
 
 .product {
   margin: 8px;
+}
+
+.product:hover {
+  cursor: pointer;
 }
 </style>
