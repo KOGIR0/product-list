@@ -1,21 +1,24 @@
 <template>
   <div id="app">
-    <div id="add-product-label">
-      Добавление товара
+    <div class="row" style="justify-content: space-between">
+      <div id="add-product-label" class="margin8">
+        Добавление товара
+      </div>
+      <SelectSortOrder class="margin8" />
     </div>
     <div class="row">
-      <div id="add-product-form">
+      <div id="add-product-form" class="margin8">
         <AddProductForm
           :on-submit="addProduct"
         />
       </div>
-      <div class="row products-list">
+      <div class="products-list">
         <ProductTile
           v-for="(product,index) in products"
           :key="index"
           :product="product"
           :delete-product="deleteProduct"
-          class="product"
+          class="product margin8"
         />
       </div>
     </div>
@@ -74,7 +77,6 @@ export default {
       this.products.push(product)
     },
     deleteProduct (product) {
-      console.log(product)
       this.products = this.products.filter(p => p.id !== product.id)
     }
   }
@@ -84,6 +86,9 @@ export default {
 <style>
 #add-product-form {
   width: 30%;
+}
+
+.margin8 {
   margin: 8px;
 }
 
@@ -94,7 +99,6 @@ export default {
   font-size: 28px;
   line-height: 35px;
   color: #3F3F3F;
-  margin: 8px;
 }
 
 html {
@@ -109,10 +113,6 @@ html {
   display: grid;
   grid-template-columns: auto auto auto;
   width: 75%;
-}
-
-.product {
-  margin: 8px;
 }
 
 .product:hover {
