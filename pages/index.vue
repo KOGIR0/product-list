@@ -4,7 +4,7 @@
       <div id="add-product-label" class="margin8">
         Добавление товара
       </div>
-      <SelectSortOrder class="margin8" />
+      <SelectSortOrder class="margin8" @changed="setSortOrder" />
     </div>
     <div class="row">
       <div id="add-product-form" class="margin8">
@@ -14,7 +14,7 @@
       </div>
       <TransitionGroup name="list" class="products-list" tag="div">
         <ProductTile
-          v-for="(product,index) in products"
+          v-for="(product,index) in sortedProducts"
           :key="index"
           :product="product"
           :delete-product="deleteProduct"
@@ -34,41 +34,67 @@ export default {
     return {
       products: [
         {
-          name: 'Product',
+          name: 'b',
           price: '10000',
           imgSrc: '/product.png',
           description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
           id: uuidv4()
         },
         {
-          name: 'Product',
-          price: '10000',
+          name: 'c',
+          price: '15000',
           imgSrc: '/product.png',
           description: 'Довольно-таки интересное описание товара в несколько строк',
           id: uuidv4()
         },
         {
-          name: 'Product',
-          price: '10000',
+          name: 'a',
+          price: '9000',
           imgSrc: 'product.png',
           description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
           id: uuidv4()
         },
         {
-          name: 'Product',
-          price: '10000',
+          name: 'l',
+          price: '145000',
           imgSrc: 'product.png',
           description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
           id: uuidv4()
         },
         {
-          name: 'Product',
+          name: 'p',
           price: '10000',
           imgSrc: 'product.png',
           description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
           id: uuidv4()
         }
-      ]
+      ],
+      sortOrder: ''
+    }
+  },
+  computed: {
+    sortedProducts () {
+      switch (this.sortOrder) {
+        case 'min':
+          return this.products.slice().sort((a, b) => {
+            return Number(a.price) - Number(b.price)
+          })
+        case 'max':
+          return this.products.slice().sort((a, b) => {
+            return Number(b.price) - Number(a.price)
+          })
+        case 'name':
+          return this.products.slice().sort((a, b) => {
+            if (a.name > b.name) {
+              return 1
+            }
+            if (a.name < b.name) {
+              return -1
+            }
+            return 0
+          })
+      }
+      return this.products
     }
   },
   methods: {
@@ -78,6 +104,9 @@ export default {
     },
     deleteProduct (product) {
       this.products = this.products.filter(p => p.id !== product.id)
+    },
+    setSortOrder (value) {
+      this.sortOrder = value
     }
   }
 }

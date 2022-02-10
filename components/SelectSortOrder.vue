@@ -1,17 +1,28 @@
 <template>
-  <select>
-    <option default>
+  <select @change="changeValue($event)">
+    <option default value="none">
       По умолчанию
     </option>
-    <option>Цена min</option>
-    <option>Цена max</option>
-    <option>Наименование</option>
+    <option value="min">
+      Цена min
+    </option>
+    <option value="max">
+      Цена max
+    </option>
+    <option value="name">
+      Наименование
+    </option>
   </select>
 </template>
 
 <script>
 export default {
-  name: 'SelectSortOrder'
+  name: 'SelectSortOrder',
+  methods: {
+    changeValue (e) {
+      this.$emit('changed', e.target.value)
+    }
+  }
 }
 </script>
 
