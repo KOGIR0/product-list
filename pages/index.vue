@@ -14,8 +14,8 @@
       </div>
       <TransitionGroup name="list" class="products-list" tag="div">
         <ProductTile
-          v-for="(product,index) in sortedProducts"
-          :key="index"
+          v-for="product in sortedProducts"
+          :key="product.id"
           :product="product"
           :delete-product="deleteProduct"
           class="product margin8"
@@ -113,7 +113,7 @@ export default {
 </script>
 
 <style>
-.list-move, /* apply transition to moving elements */
+.list-move,
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -124,8 +124,6 @@ export default {
   opacity: 0;
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;
 }
