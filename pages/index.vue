@@ -12,7 +12,7 @@
           :on-submit="addProduct"
         />
       </div>
-      <div class="products-list">
+      <TransitionGroup name="list" class="products-list" tag="div">
         <ProductTile
           v-for="(product,index) in products"
           :key="index"
@@ -20,7 +20,7 @@
           :delete-product="deleteProduct"
           class="product margin8"
         />
-      </div>
+      </TransitionGroup>
     </div>
   </div>
 </template>
@@ -84,6 +84,23 @@ export default {
 </script>
 
 <style>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+
 #add-product-form {
   width: 30%;
 }
@@ -111,7 +128,10 @@ html {
 
 .products-list {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);
+  min-width: 0;
+  min-height: 0;
+  table-layout: fixed;
   width: 75%;
 }
 
