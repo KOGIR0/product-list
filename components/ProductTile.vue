@@ -27,14 +27,20 @@ export default {
       type: Object
     },
     deleteProduct: {
-      defalut: () => {},
-      type: Function
+      type: Function,
+      default: () => {}
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+* {
+  color: $color-text-dark;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+}
+
 img {
   width: 100%;
   height: 200px;
@@ -48,25 +54,25 @@ img {
 }
 
 #name {
-  font-family: "Source Sans Pro";
-  font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 25px;
-  color: #3F3F3F;
 }
 
 #description {
-  font-family: "Source Sans Pro";
-  font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
 
   flex-grow: 1;
+}
 
-  color: #3F3F3F;
+#price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  margin-top: 32px;
 }
 
 #product {
@@ -76,17 +82,10 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
-}
 
-#price {
-  font-family: "Source Sans Pro";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
-  margin-top: 32px;
-
-  color: #3F3F3F;
+  &:hover #delete-btn {
+    visibility: visible;
+  }
 }
 
 #delete-btn {
@@ -99,17 +98,13 @@ img {
   top: -8px;
   right: -8px;
   visibility: hidden;
-}
 
-#delete-btn img {
-  width: 16px;
-  height: 16px;
-  position: relative;
-  left: 8px;
-  top: 8px;
-}
-
-#product:hover #delete-btn {
-  visibility: visible;
+  img {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    left: 8px;
+    top: 8px;
+  }
 }
 </style>

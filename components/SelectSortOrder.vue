@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 select {
     background: #FFFEFB;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -41,6 +41,10 @@ select {
 
     padding: 0 16px;
     color: #B4B4B4;
+
+    &:hover {
+      cursor: pointer;
+    }
 }
 
 option {

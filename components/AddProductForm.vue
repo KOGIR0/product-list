@@ -8,14 +8,19 @@
     <input v-model="imgSrc" type="text" placeholder="Введите ссылку" required>
     <label>Цена товара<span class="required">&#42;</span></label>
     <input :value="formatedPrice" required placeholder="Введите цену" @input="handleInputPrice($event)">
-    <input type="submit" value="Добавить товар" :disabled="submitIsDisabled" :style="{background: submitColor}">
+    <input type="submit" value="Добавить товар" :disabled="submitIsDisabled">
   </form>
 </template>
 
 <script>
 export default {
   name: 'AddProductForm',
-  props: ['onSubmit'],
+  props: {
+    onSubmit: {
+      type: Function,
+      default: () => {}
+    }
+  },
   data () {
     return {
       name: '',
@@ -70,97 +75,98 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 * {
-    font-family: 'Source Sans Pro';
+  font-family: 'Source Sans Pro';
 }
 
 label {
-    display: block;
-    font-size: 10px;
-    font-weight: 400;
-    margin-top: 16px;
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 16px;
 }
 
 input {
-    font-size: 12px;
-    line-height: 15px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    border: none;
-    border-radius: 4px;
-    color: black;
-    height: 36px;
-    width: 100%;
-    background-color: #FFFEFB;
-    font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 4px;
+  color: $color-text-dark;
+  height: 36px;
+  width: 100%;
+  background-color: #FFFEFB;
+  font-weight: 400;
 }
 
 input[type="submit"] {
-    margin-top: 24px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
+  margin-top: 24px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
 
-    text-align: center;
-    letter-spacing: -0.02em;
-}
+  text-align: center;
+  letter-spacing: -0.02em;
 
-input[type="submit"]:hover:enabled {
-    cursor: pointer;
-}
-
-input[type="submit"]:enabled {
+  &:enabled {
+    background: green;
     color: white;
-}
+  }
 
-input[type="submit"]:disabled {
+  &:disabled {
     color: #B4B4B4;
+  }
+
+  &:hover:enabled {
+    cursor: pointer;
+  }
 }
 
 textarea {
-    resize: none;
-    font-size: 12px;
-    line-height: 15px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    border: none;
-    border-radius: 4px;
-    color: black;
-    height: 36px;
-    width: 100%;
-    background-color: #FFFEFB;
+  resize: none;
+  font-size: 12px;
+  line-height: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 4px;
+  color: black;
+  height: 36px;
+  width: 100%;
+  background: #FFFEFB;
 }
 
 form {
-    background: #FFFEFB;
-    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
-    border-radius: 4px;
-    padding: 24px;
+  background: #FFFEFB;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+  padding: 24px;
 }
 
 button {
-    background: #EEEEEE;
-    border-radius: 10px;
-    margin-top: 24px;
-    height: 36px;
-    width: 100%;
-    border: none;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    color: #B4B4B4;
-    box-sizing: border-box;
-    font-weight: 600;
+  background: #EEEEEE;
+  border-radius: 10px;
+  margin-top: 24px;
+  height: 36px;
+  width: 100%;
+  border: none;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #B4B4B4;
+  box-sizing: border-box;
+  font-weight: 600;
 }
 
 #description {
-    height: 108px;
+  height: 108px;
 }
 
 .required {
-    color: red;
+  color: red;
 }
 </style>

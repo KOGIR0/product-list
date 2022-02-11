@@ -112,7 +112,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .list-move,
 .list-enter-active,
 .list-leave-active {
@@ -137,16 +137,12 @@ export default {
 }
 
 #add-product-label {
-  font-family: Source Sans Pro;
+  font-family: "Source Sans Pro";
   font-style: normal;
   font-weight: 600;
   font-size: 28px;
   line-height: 35px;
-  color: #3F3F3F;
-}
-
-html {
-  background: #E5E5E5;
+  color: $color-text-dark;
 }
 
 .row {
@@ -164,5 +160,11 @@ html {
 
 .product:hover {
   cursor: pointer;
+}
+</style>
+
+<style lang="scss">
+html {
+  background: $html-bg-color;
 }
 </style>
