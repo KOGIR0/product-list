@@ -15,12 +15,6 @@
 <script>
 export default {
   name: 'AddProductForm',
-  props: {
-    onSubmit: {
-      type: Function,
-      default: () => {}
-    }
-  },
   data () {
     return {
       name: '',
@@ -59,8 +53,9 @@ export default {
       this.description = ''
       this.imgSrc = ''
       this.price = ''
+      this.formatedPrice = ''
 
-      this.onSubmit(product)
+      this.$emit('submit', product)
     },
     handleInputPrice (e) {
       this.price = Number(String(e.target.value).replace(/\s+/g, ''))
@@ -82,14 +77,11 @@ export default {
 
 label {
   display: block;
-  font-size: 10px;
-  font-weight: 400;
-  margin-top: 16px;
+  font: 10px/16px 'Source Sans Pro';
 }
 
 input {
-  font-size: 12px;
-  line-height: 15px;
+  font: 12px/15px 'Source Sans Pro';
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 4px;
@@ -97,16 +89,12 @@ input {
   height: 36px;
   width: 100%;
   background-color: #FFFEFB;
-  font-weight: 400;
+  margin-bottom: 16px;
 }
 
 input[type="submit"] {
-  margin-top: 24px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
+  margin-top: 8px;
+  font: 600 12px/15px "Inter";
 
   text-align: center;
   letter-spacing: -0.02em;
@@ -127,8 +115,7 @@ input[type="submit"] {
 
 textarea {
   resize: none;
-  font-size: 12px;
-  line-height: 15px;
+  font: 12px/15px 'Source Sans Pro';
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 4px;
@@ -136,6 +123,7 @@ textarea {
   height: 36px;
   width: 100%;
   background: #FFFEFB;
+  margin-bottom: 16px;
 }
 
 form {
@@ -143,23 +131,6 @@ form {
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
   padding: 24px;
-}
-
-button {
-  background: #EEEEEE;
-  border-radius: 10px;
-  margin-top: 24px;
-  height: 36px;
-  width: 100%;
-  border: none;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  color: #B4B4B4;
-  box-sizing: border-box;
-  font-weight: 600;
 }
 
 #description {

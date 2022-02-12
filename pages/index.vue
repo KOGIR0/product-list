@@ -9,7 +9,7 @@
     <div class="row">
       <div id="add-product-form" class="margin8">
         <AddProductForm
-          :on-submit="addProduct"
+          @submit="addProduct"
         />
       </div>
       <TransitionGroup name="list" class="products-list" tag="div">
@@ -137,11 +137,7 @@ export default {
 }
 
 #add-product-label {
-  font-family: "Source Sans Pro";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 35px;
+  font: 600 28px/35px "Source Sans Pro";
   color: $color-text-dark;
 }
 

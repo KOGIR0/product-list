@@ -38,7 +38,6 @@ export default {
 * {
   color: $color-text-dark;
   font-family: "Source Sans Pro";
-  font-style: normal;
 }
 
 img {
@@ -54,24 +53,18 @@ img {
 }
 
 #name {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 25px;
+  font: 600 20px/25px "Source Sans Pro";
 }
 
 #description {
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 20px;
+  font: 16px/20px "Source Sans Pro";
   margin-top: 16px;
 
   flex-grow: 1;
 }
 
 #price {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
+  font: 600 24px/30px "Source Sans Pro";
   margin-top: 32px;
 }
 
