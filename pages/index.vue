@@ -26,65 +26,27 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
-
 export default {
   name: 'IndexPage',
   data () {
     return {
-      products: [
-        {
-          name: 'b',
-          price: '10000',
-          imgSrc: '/product.png',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          id: uuidv4()
-        },
-        {
-          name: 'c',
-          price: '15000',
-          imgSrc: '/product.png',
-          description: 'Довольно-таки интересное описание товара в несколько строк',
-          id: uuidv4()
-        },
-        {
-          name: 'a',
-          price: '9000',
-          imgSrc: 'product.png',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          id: uuidv4()
-        },
-        {
-          name: 'l',
-          price: '145000',
-          imgSrc: 'product.png',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          id: uuidv4()
-        },
-        {
-          name: 'p',
-          price: '10000',
-          imgSrc: 'product.png',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          id: uuidv4()
-        }
-      ],
       sortOrder: ''
     }
   },
   computed: {
     sortedProducts () {
+      const products = this.$store.state.products.products
       switch (this.sortOrder) {
         case 'min':
-          return this.products.slice().sort((a, b) => {
+          return products.slice().sort((a, b) => {
             return Number(a.price) - Number(b.price)
           })
         case 'max':
-          return this.products.slice().sort((a, b) => {
+          return products.slice().sort((a, b) => {
             return Number(b.price) - Number(a.price)
           })
         case 'name':
-          return this.products.slice().sort((a, b) => {
+          return products.slice().sort((a, b) => {
             if (a.name > b.name) {
               return 1
             }
@@ -94,16 +56,15 @@ export default {
             return 0
           })
       }
-      return this.products
+      return products
     }
   },
   methods: {
     addProduct (product) {
-      product.id = uuidv4()
-      this.products.push(product)
+      this.$store.commit('products/add', product)
     },
     deleteProduct (product) {
-      this.products = this.products.filter(p => p.id !== product.id)
+      this.$store.commit('products/remove', product)
     },
     setSortOrder (value) {
       this.sortOrder = value
